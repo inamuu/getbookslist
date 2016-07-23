@@ -16,7 +16,7 @@ list['siteurl'].each do | url |
 #  end
 
   doc = Nokogiri::HTML(open(url).read)
-  puts "=== TOP page Info === "
+  puts "=== Info === "
   p doc.title
   doc.xpath('//h2[@class="entry-title"]').each do | node |
     puts node.text
