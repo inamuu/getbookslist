@@ -1,6 +1,7 @@
 require 'yaml'
 require 'open-uri'
 require 'nokogiri'
+require './slack.rb'
 
 list = YAML.load_file("list.yaml")
 
@@ -19,7 +20,7 @@ list['siteurl'].each do | url |
   puts "=== Info === "
   p doc.title
   doc.xpath('//h2[@class="entry-title"]').each do | node |
-    puts node.text
+    slackvar = node.text
   end
 end
 
