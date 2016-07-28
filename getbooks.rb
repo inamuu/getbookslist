@@ -2,6 +2,7 @@ require 'yaml'
 require 'open-uri'
 require 'nokogiri'
 require 'slack/incoming/webhooks'
+require 'dotenv'
 
 list = YAML.load_file("list.yaml")
 
@@ -16,7 +17,8 @@ list['siteurl'].each do | url |
   str = arr.join
   str = str.gsub!(/\[(?!Novel).*/, '')
 
-  slack = Slack::Incoming::Webhooks.new "https://hooks.slack.com/services/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"
+  Dotenv.load
+  slack = Slack::Incoming::Webhooks.new ENV["APIKEY"]
   
   attachments = [{
     color: "#483D8B",
