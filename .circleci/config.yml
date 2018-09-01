@@ -1,0 +1,23 @@
+---
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ruby:2.4
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec ruby getbooks.rb
+workflows:
+  version: 2
+  schedule_workflow:
+    triggers:
+      - schedule:
+          cron: "30 10 * * *" # UTCで記述。-9
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
