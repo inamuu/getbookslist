@@ -14,7 +14,7 @@ workflows:
   schedule_workflow:
     triggers:
       - schedule:
-          cron: "03 12 * * *" # UTCで記述。-9
+          cron: "03 10 * * *" # UTCで記述。-9
           filters:
             branches:
               only:
